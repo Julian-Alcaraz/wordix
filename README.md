@@ -10,5 +10,5 @@
 
  # Integrantes del Grupo
  - **Julian Jorge Alcaraz** - Legajo: FAI-4261 -mail: julianalcaraz4@gmail.com - GitHub: Julian-Alcaraz 
-
+ - **Gomez Zuñiga Gonzalo** - Legajo: FAI-4381 -mail: gzg95-@hotmail.es -GitHuv: GonzaGomez9522
 
