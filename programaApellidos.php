@@ -8,7 +8,7 @@ include_once("wordix.php");
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
 /* ... COMPLETAR ... */
 
-
+//prueba de muestra
 
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
