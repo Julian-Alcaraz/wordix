@@ -387,3 +387,24 @@ function jugarWordix($palabraWordix, $nombreUsuario)
 
     return $partida;
 }
+/**Funcion solicita nombre de jugador, verifica que sean todas letras y le devuelve en minusculas
+ * no tiene parametros
+ */
+function solicitarJugador(){
+    /** string $nombre
+     * boolean $nombreBienIngresado
+     */
+    echo "Ingrese el nombre del jugador " ;
+    $nombre = trim(fgets(STDIN));
+    do{
+    if (esPalabra($nombre)){
+        $nombreBienIngresado=true;
+    }else{
+        $nombreBienIngresado=false;
+        echo"el nombre ingresado no es valido";
+        echo "Ingrese otro porfavor";
+        $nombre = trim(fgets(STDIN));
+    }
+    }while(!$nombreBienIngresado);
+return strtolower($nombre);
+}
