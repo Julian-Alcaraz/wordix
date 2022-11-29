@@ -545,3 +545,134 @@ function resumenJugador($estructuraPartidas, $nombreJugador){
     return $resumen;
     
 }
+//consigna numero 5
+/** la funcion pide un numero al usuario entre un rango de valores, 
+    *si el usuario ingresa un numero que no es valido, vuelve a pedirlo, retorna un numero valido
+*@param int $numero
+*@return int
+*/
+
+function solicitarNumeroEntre($min, $max)
+{
+
+    //int $numero
+    echo "ingrese un numero: ";
+    $numero = trim(fgets(STDIN));
+	
+	if (is_numeric($numero)) { 
+        $numero  = $numero * 1; 
+    }
+	
+    while (!is_numeric($numero) ||( is_int($numero) && !($numero >= $min && $numero <= $max))) {
+        echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
+        $numero = trim(fgets(STDIN));
+		if (is_numeric($numero)) {
+			$numero  = $numero * 1; 
+		}
+        
+    }
+    
+    return $numero;
+}
+/*$min1=0;
+$max1=100;
+$numeroRetorno=solicitarNumeroEntre($min1,$max1);
+echo"el numero de retorno es: ".$numeroRetorno;*/
+
+//consigna numero 6
+/**Una función que, dado un número de partida, muestre en pantalla los datos de la partida
+*@param array $estructuraPartida
+*@return 
+*/
+function datosPartida($estructuraPartida1,$nPartida1){ 
+    /*Int $nPartida, String $msj*/
+    $msj="";
+    $palabra1=$estructuraPartida1[$nPartida1]["palabra"];
+    $nombre1=$estructuraPartida1[$nPartida1]["jugador"];
+    $puntaje1=$estructuraPartida1[$nPartida1]["puntaje"];
+    $intentos1=$estructuraPartida1[$nPartida1]["intentos"];
+    if($intentos1>6){
+        $msj="No adivino la palabra";
+    }else{
+        $msj="Adivino la palabra en ".$intentos1." intentos";
+    }
+    /*$estructuraPartida1=[$palabra1,$nombre1,$puntaje1,$intentos1];*/
+    echo"Partida WORDIX ".$nPartida1." : palabra ".$palabra1."\n";
+    echo"Jugador: ".$nombre1."\n";
+    echo"Puntaje: ".$puntaje1." puntos\n";
+    echo"Intentos: ".$msj."\n";
+    if($intentos1>6)
+    return;
+    }
+    //programa principal//
+    /*$estructuraPartida = array();
+    $estructuraPartida[0]= array("palabra"=> "MUJER" , "jugador" => "maria", "puntaje"=>13 , "intentos"=>4);
+    $estructuraPartida[1]= array("palabra"=> "QUESO" , "jugador" => "pedro", "puntaje"=> 5 , "intentos"=>6);
+    $estructuraPartida[2]= array("palabra"=> "HUEVO" , "jugador" => "jorge", "puntaje"=> 2 , "intentos"=>6);
+    
+    echo"ingrese el N° de partida que desea ver";
+    $nPartida=trim(fgets(STDIN));
+    datosPartida($estructuraPartida,$nPartida);*/
+
+    //consigna numero 7
+    <?php
+/** Una función agregarPalabra cuya entrada sea la colección de palabras y una palabra, y la función retorna
+*la colección modificada al agregarse la nueva palabra
+*@param array $coleccionPalabras
+*@param string $nuevaPalabra
+*return array
+*/
+function agregarPalabra($coleccionPalabras,$nuevaPalabra){
+    //array $nuevaColeccion
+$i=0;
+$i=count($coleccionPalabras);
+$j=$i+1;
+$coleccionPalabras[$j]=$nuevaPalabra;
+return $coleccionPalabras;
+}
+//agregar al principal
+/*echo" ingrese una palabra para agregar a la coleccion";
+$nuevaPalabra=strtoupper(trim(fgets(STDIN)));*/
+
+//consigna numero 8
+/** una función que dada una colección de partidas y el nombre de un jugador, retorna el índice de la primera
+*partida ganada por dicho jugador. Si el jugador ganó ninguna partida, la función debe retornar el valor -1.
+*@param array $estructuraPartidas
+*@param string $nombre1
+*return Int
+*/
+
+function primerPartidaGanada($estructuraPartidas1,$nombre1){
+    //int $j,$i,$indice
+    $indice=0;
+    $j=count($estructuraPartidas1);
+    $i=0;
+    
+    while($i<$j){ 
+    
+        if(($estructuraPartidas1[$i]["puntaje"]>0)&&($estructuraPartidas1[$i]["jugador"]==$nombre1)){
+            $indice=$i;
+            $i=$j;
+        }elseif($estructuraPartidas1[$i]["puntaje"]==0){  
+            $indice=-1;  
+    }       
+     $i=$i+1;
+     
+           
+    
+    }    
+    return $indice;
+    }
+    
+    //programa principal//
+    /*$estructuraPartida = array();
+    $estructuraPartida [0] = array("palabra"=> "MUJER" , "jugador" => "maria", "puntaje"=> 0 , "intentos"=>6);
+    $estructuraPartida [1] = array("palabra"=> "QUESO" , "jugador" => "pedro", "puntaje"=> 5 , "intentos"=>6);
+    $estructuraPartida [2] = array("palabra"=> "HUEVO" , "jugador" => "jorge", "puntaje"=> 2 , "intentos"=>6);*/
+    
+    
+    /*echo"ingrese el nombre del jugador: ";
+    $nombre=trim(fgets(STDIN));
+    $iPartida=primerPartidaGanada($estructuraPartida,$nombre);
+    echo "la primer partida ganada es la numero: ".$iPartida;*/
+
