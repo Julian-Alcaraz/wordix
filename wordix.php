@@ -489,11 +489,11 @@ function resumenJugador($estructuraPartidas, $nombreJugador){
 
     $elementos= count($estructuraPartidas);
     for($i=0;$i<$elementos;$i++){
-        echo $estructuraPartidas[$i]["jugador"]."       ".$nombreJugador;
+        //echo $estructuraPartidas[$i]["jugador"]."       ".$nombreJugador;
         if( ($estructuraPartidas[$i]["jugador"])==$nombreJugador){
             $cantPartidas = $cantPartidas+1;
             $puntajeTotal=$puntajeTotal + $estructuraPartidas[$i]["puntaje"];
-            switch($estructuraPartidas[$i]["intento"]){
+            switch($estructuraPartidas[$i]["intentos"]){
                 case 1: $intento1=$intento1 +1; break;
                 case 2: $intento2=$intento2 +1; break;
                 case 3: $intento3=$intento3 +1; break;
@@ -560,10 +560,7 @@ function solicitarNumeroEntre($min, $max){
     }
     return $numero;
 }
-/*$min1=0;
-$max1=100;
-$numeroRetorno=solicitarNumeroEntre($min1,$max1);
-echo"el numero de retorno es: ".$numeroRetorno;*/
+
 
 //consigna numero 6
 /**Una función que, dado un número de partida, muestre en pantalla los datos de la partida
@@ -583,23 +580,15 @@ function datosPartida($estructuraPartida1,$nPartida1){
         $msj="Adivino la palabra en ".$intentos1." intentos";
     }
     /*$estructuraPartida1=[$palabra1,$nombre1,$puntaje1,$intentos1];*/
+    echo"******************************************************************";
     echo"Partida WORDIX ".$nPartida1." : palabra ".$palabra1."\n";
     echo"Jugador: ".$nombre1."\n";
     echo"Puntaje: ".$puntaje1." puntos\n";
     echo"Intentos: ".$msj."\n";
-    //if($intentos1>6)
-    }
-    //programa principal//
-    /*$estructuraPartida = array();
-    $estructuraPartida[0]= array("palabra"=> "MUJER" , "jugador" => "maria", "puntaje"=>13 , "intentos"=>4);
-    $estructuraPartida[1]= array("palabra"=> "QUESO" , "jugador" => "pedro", "puntaje"=> 5 , "intentos"=>6);
-    $estructuraPartida[2]= array("palabra"=> "HUEVO" , "jugador" => "jorge", "puntaje"=> 2 , "intentos"=>6);
-    
-    echo"ingrese el N° de partida que desea ver";
-    $nPartida=trim(fgets(STDIN));
-    datosPartida($estructuraPartida,$nPartida);*/
+    echo"******************************************************************";
+}
 
-    //consigna numero 7
+//consigna numero 7
 /** Una función agregarPalabra cuya entrada sea la colección de palabras y una palabra, y la función retorna
 *la colección modificada al agregarse la nueva palabra
 *@param array $coleccionPalabras

@@ -80,9 +80,9 @@ do {
             $porcentaje=$datosResumen["victorias"]*100/$datosResumen["partidas"];//ver
             echo"Jugador: ".$datosResumen["nombre"]."\n";
             echo"Partidas: ".$datosResumen["partidas"]."\n";
-            echo"Puntjae Total: ".$datosResumen["puntaje"]."\n";
-            echo"Victrias: ".$datosResumen["victorias"];
-            echo"Porcentaje Victorias: ".$porcentaje."\n";
+            echo"Puntaje Total: ".$datosResumen["puntaje"]."\n";
+            echo"Victorias: ".$datosResumen["victorias"];
+            echo"Porcentaje Victorias: ".$porcentaje."%\n";
             echo"Adivinidas: \n";
             echo"   Intento 1: ".$datosResumen["intento1"]."\n";
             echo"   Intento 2: ".$datosResumen["intento2"]."\n";
