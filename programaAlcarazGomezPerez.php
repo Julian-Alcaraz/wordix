@@ -34,7 +34,7 @@ do {
             $numPalabra = trim(fgets(STDIN));
             //"!!!!verifico que la palabra no la haya usado el jugador
             do{
-            $estadoPalabra=verificarPalabra($coleccionPartidas,$numPalabra,$jugador);
+            $estadoPalabra=verificarPalabra($coleccionPartidas,$coleccionPalabras[$numPalabra],$jugador);
             if(!$estadoPalabra){
                     echo "seleccione otra palabra";
                     $numPalabra = trim(fgets(STDIN));
@@ -49,7 +49,7 @@ do {
             $numPalabra= rand($min =0,count($coleccionPalabras));
             //"!!!!verifico que la palabra no la haya usado el jugador(usar misma funcion que en el anterior)
             do{
-                $estadoPalabra=verificarPalabra($coleccionPartidas,$numPalabra,$jugador);
+                $estadoPalabra=verificarPalabra($coleccionPartidas,$coleccionPalabras[$numPalabra],$jugador);
                 if(!$estadoPalabra){
                     //vuelvo a buscar otra palabra
                     $numPalabra = rand($min =0,count($coleccionPalabras));

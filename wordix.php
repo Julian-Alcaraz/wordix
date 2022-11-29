@@ -652,22 +652,21 @@ function primerPartidaGanada($estructuraPartidas1,$nombre1){
 /**
  *  **COMPLETAR**
  */
-function verificarPalabra($coleccionPartidas, $palabra,$jugador){
+function verificarPalabra($coleccionPartidas, $palabra,$jugador,){
     $i=0;
     $elementos=count($coleccionPartidas);
     while($i<$elementos){
-        //uso la palabra
-        if($coleccionPartidas[$i]["jugador"] == "$jugador" && $coleccionPartidas[$i]["palabraWordix"]=="$palabra"){
-            echo "palabra ya usada";
+        if($coleccionPartidas[$i]["jugador"] == $jugador && $coleccionPartidas[$i]["palabraWordix"] ==$palabra){ 
+            echo "Palabra ya usada ";
             $validez=FALSE;
             $i=$elementos;
         }else{//no la uso
             //echo $coleccionPartidas[$i]["jugador"]."ingresada".$jugador."\n";
-            echo "palabra no usada";
+            //echo "palabra no usada";
             //echo $coleccionPartidas[$i]["palabraWordix"]."ingresada".$palabra;
             $validez=TRUE;
             $i++;
         }
     }
     return $validez; 
-}
+} 
