@@ -26,28 +26,6 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
-/**
- *  ****COMPLETAR*****
- */
-function solicitarNumeroEntre($min, $max)
-{
-    //int $numero
-    $numero = trim(fgets(STDIN));
-	
-	if (is_numeric($numero)) { //determina si un string es un número. puede ser float como entero.
-        $numero  = $numero * 1; //con esta operación convierto el string en número.
-    }
-	
-    while (!is_numeric($numero) ||( is_int($numero) && !($numero >= $min && $numero <= $max))) {
-        echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
-        $numero = trim(fgets(STDIN));
-		if (is_numeric($numero)) {
-			$numero  = $numero * 1; 
-		}
-    }
-    
-    return $numero;
-}
 
 /**
  * Escrbir un texto en color ROJO
@@ -515,7 +493,6 @@ function resumenJugador($estructuraPartidas, $nombreJugador){
     /** int $cantPartidas,$puntajeTotal,$intento1,$intento2,$intento3,$intento,$intento5,$intento6,$derrotas,$elementos,$victorias
      * array $resumen
      */
-    $i=0;
     $cantPartidas=0;
     $puntajeTotal=0;
     $intento1=0;
@@ -526,24 +503,54 @@ function resumenJugador($estructuraPartidas, $nombreJugador){
     $intento6=0;
     $derrotas=0;
     $elementos= count($estructuraPartidas);
-    while($i<$elementos && $estructuraPartidas[$i]["nombre"]==$nombreJugador){
-        $cantPartidas = $cantPartidas+1;
-        $puntajeTotal=$puntajeTotal + $estructuraPartidas[$i]["puntaje"];
-        switch($estructuraPartidas[$i]["intento"]){
-            case 1: $intento1=$intento1 +1; break;
-            case 2: $intento2=$intento2 +1; break;
-            case 3: $intento3=$intento3 +1; break;
-            case 4: $intento4=$intento4 +1; break;
-            case 5: $intento5=$intento5 +1; break;
-            case 6: $intento6=$intento6 +1; break;
-            default: $derrotas= $derrotas +1;
-        } 
+    for($i=0;$i<$elementos;$i++){
+        if( $estructuraPartidas[$i]["nombre"]==$nombreJugador){
+            $cantPartidas = $cantPartidas+1;
+            $puntajeTotal=$puntajeTotal + $estructuraPartidas[$i]["puntaje"];
+            switch($estructuraPartidas[$i]["intento"]){
+                case 1: $intento1=$intento1 +1; break;
+                case 2: $intento2=$intento2 +1; break;
+                case 3: $intento3=$intento3 +1; break;
+                case 4: $intento4=$intento4 +1; break;
+                case 5: $intento5=$intento5 +1; break;
+                case 6: $intento6=$intento6 +1; break;
+                default: $derrotas= $derrotas +1;
+            } 
+            $i=$i+1;
+        };
     };
     $victorias= $cantPartidas - $derrotas;
     $resumen=["nombre"=>$nombreJugador, "partidas"=> $cantPartidas, "puntaje"=>$puntajeTotal, "victorias"=>$victorias, "intento1"=>$intento1,
                 "intento2"=>$intento2,"intento3"=>$intento3,"intento4"=>$intento4,"intento5"=>$intento5,"intento6"=>$intento6, ];
     return $resumen;
-    
+}
+/**funcion de comparacion para uasort
+ * @param array $partida1, $partida2
+ * @return int 
+ */
+function cmp($partida1,$partida2){
+    //int $orden
+    if($partida1["jugador"]==$partida2["jugador"]){
+        if($partida1["palabra"]==$partida2["palabra"]){
+            $orden= 0;
+        }elseif($partida1["palabra"]>$partida2["palabra"]){
+            $orden=1;
+        }else{
+            $orden=-1;
+        }
+    }elseif($partida1["jugador"]>$partida2["jugador"]){
+        $orden=1;
+    }else{
+        $orden=-1;
+    }
+    return $orden;
+}
+/**funcion mostrar coleccion ordena por nombre y palabra
+ * @param array $estructuraPartidas
+ */
+function mostrarColeccion($estructuraPartidas){
+    $estructuraOrdenada=uasort($estructuraPartidas,'cmp');
+    print_r($estructuraOrdenada);
 }
 //consigna numero 5
 /** la funcion pide un numero al usuario entre un rango de valores, 
@@ -551,27 +558,20 @@ function resumenJugador($estructuraPartidas, $nombreJugador){
 *@param int $numero
 *@return int
 */
-
-function solicitarNumeroEntre($min, $max)
-{
-
+function solicitarNumeroEntre($min, $max){
     //int $numero
     echo "ingrese un numero: ";
     $numero = trim(fgets(STDIN));
-	
 	if (is_numeric($numero)) { 
         $numero  = $numero * 1; 
     }
-	
     while (!is_numeric($numero) ||( is_int($numero) && !($numero >= $min && $numero <= $max))) {
         echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
         $numero = trim(fgets(STDIN));
 		if (is_numeric($numero)) {
 			$numero  = $numero * 1; 
 		}
-        
     }
-    
     return $numero;
 }
 /*$min1=0;
@@ -601,7 +601,7 @@ function datosPartida($estructuraPartida1,$nPartida1){
     echo"Jugador: ".$nombre1."\n";
     echo"Puntaje: ".$puntaje1." puntos\n";
     echo"Intentos: ".$msj."\n";
-    if($intentos1>6)
+    //if($intentos1>6)
     return;
     }
     //programa principal//
@@ -615,7 +615,6 @@ function datosPartida($estructuraPartida1,$nPartida1){
     datosPartida($estructuraPartida,$nPartida);*/
 
     //consigna numero 7
-    <?php
 /** Una función agregarPalabra cuya entrada sea la colección de palabras y una palabra, y la función retorna
 *la colección modificada al agregarse la nueva palabra
 *@param array $coleccionPalabras
@@ -624,11 +623,11 @@ function datosPartida($estructuraPartida1,$nPartida1){
 */
 function agregarPalabra($coleccionPalabras,$nuevaPalabra){
     //array $nuevaColeccion
-$i=0;
-$i=count($coleccionPalabras);
-$j=$i+1;
-$coleccionPalabras[$j]=$nuevaPalabra;
-return $coleccionPalabras;
+    $i=0;
+    $i=count($coleccionPalabras);
+    $j=$i+1;
+    $coleccionPalabras[$j]=$nuevaPalabra;
+    return $coleccionPalabras;
 }
 //agregar al principal
 /*echo" ingrese una palabra para agregar a la coleccion";
@@ -641,38 +640,20 @@ $nuevaPalabra=strtoupper(trim(fgets(STDIN)));*/
 *@param string $nombre1
 *return Int
 */
-
 function primerPartidaGanada($estructuraPartidas1,$nombre1){
     //int $j,$i,$indice
     $indice=0;
     $j=count($estructuraPartidas1);
     $i=0;
-    
-    while($i<$j){ 
-    
+    while($i<$j){    
         if(($estructuraPartidas1[$i]["puntaje"]>0)&&($estructuraPartidas1[$i]["jugador"]==$nombre1)){
             $indice=$i;
             $i=$j;
         }elseif($estructuraPartidas1[$i]["puntaje"]==0){  
             $indice=-1;  
     }       
-     $i=$i+1;
-     
-           
-    
+     $i=$i+1; 
     }    
     return $indice;
     }
-    
-    //programa principal//
-    /*$estructuraPartida = array();
-    $estructuraPartida [0] = array("palabra"=> "MUJER" , "jugador" => "maria", "puntaje"=> 0 , "intentos"=>6);
-    $estructuraPartida [1] = array("palabra"=> "QUESO" , "jugador" => "pedro", "puntaje"=> 5 , "intentos"=>6);
-    $estructuraPartida [2] = array("palabra"=> "HUEVO" , "jugador" => "jorge", "puntaje"=> 2 , "intentos"=>6);*/
-    
-    
-    /*echo"ingrese el nombre del jugador: ";
-    $nombre=trim(fgets(STDIN));
-    $iPartida=primerPartidaGanada($estructuraPartida,$nombre);
-    echo "la primer partida ganada es la numero: ".$iPartida;*/
 
