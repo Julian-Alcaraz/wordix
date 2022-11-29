@@ -505,3 +505,43 @@ function seleccionarOpcion(){
     }
     return $menuOpciones[$opcion];
 }
+/** funcion resumen de jugador de todas las partidas que jugo el Jugador con nombre"x", se saca un resumen
+ * parametros
+ * @param array $estructuraPartidas
+ * @param string $nombreJugador
+ * @return array
+ */
+function resumenJugador($estructuraPartidas, $nombreJugador){
+    /** int $cantPartidas,$puntajeTotal,$intento1,$intento2,$intento3,$intento,$intento5,$intento6,$derrotas,$elementos,$victorias
+     * array $resumen
+     */
+    $i=0;
+    $cantPartidas=0;
+    $puntajeTotal=0;
+    $intento1=0;
+    $intento2=0;
+    $intento3=0;
+    $intento4=0;
+    $intento5=0;
+    $intento6=0;
+    $derrotas=0;
+    $elementos= count($estructuraPartidas);
+    while($i<$elementos && $estructuraPartidas[$i]["nombre"]==$nombreJugador){
+        $cantPartidas = $cantPartidas+1;
+        $puntajeTotal=$puntajeTotal + $estructuraPartidas[$i]["puntaje"];
+        switch($estructuraPartidas[$i]["intento"]){
+            case 1: $intento1=$intento1 +1; break;
+            case 2: $intento2=$intento2 +1; break;
+            case 3: $intento3=$intento3 +1; break;
+            case 4: $intento4=$intento4 +1; break;
+            case 5: $intento5=$intento5 +1; break;
+            case 6: $intento6=$intento6 +1; break;
+            default: $derrotas= $derrotas +1;
+        } 
+    };
+    $victorias= $cantPartidas - $derrotas;
+    $resumen=["nombre"=>$nombreJugador, "partidas"=> $cantPartidas, "puntaje"=>$puntajeTotal, "victorias"=>$victorias, "intento1"=>$intento1,
+                "intento2"=>$intento2,"intento3"=>$intento3,"intento4"=>$intento4,"intento5"=>$intento5,"intento6"=>$intento6, ];
+    return $resumen;
+    
+}
