@@ -8,31 +8,6 @@ include_once("wordix.php");
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
 /* ... COMPLETAR ... */
 
-//prueba de muestra
-
-/**************************************/
-/***** DEFINICION DE FUNCIONES ********/
-/**************************************/
-
-/**
- * Obtiene una colección de palabras
- * @return array
- */
-function cargarColeccionPalabras()
-{
-    $coleccionPalabras = [
-        "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
-        "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
-        "VERDE", "MELON", "YUYOS", "PIANO", "PISOS"
-        /* ... COMPLETAR ... Agregar 5 palabras más */
-    ];
-
-    return ($coleccionPalabras);
-}
-
-/* ... COMPLETAR ... */
-
-
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -42,36 +17,66 @@ function cargarColeccionPalabras()
 
 
 //Inicialización de variables:
-
-
+$coleccionPalabras=cargarColeccionPalabras();
+$coleccionPartidas=cargarPartidas();
 //Proceso:
 
-$partida = jugarWordix("MELON", strtolower("MaJo"));
+//$partida = jugarWordix("MELON", strtolower("MaJo"));
 //print_r($partida);
 //imprimirResultado($partida);
-
-
-
-/*
+echo"Ingrese un usuario \n";
+$usuario=trim(fgets(STDIN));
+escribirMensajeBienvenida($usuario);
 do {
-    $opcion = ...;
-
-    
+    $opcion=seleccionarOpcion();
     switch ($opcion) {
+        case 0: 
+            //jugar wordix con nuna partida elegida
+            //$bandera =true;
+            $jugador = solicitarJugador();
+            echo "Selecciones una de las siguientes palabras segun el numero";
+            print_r($coleccionPalabras);
+            $numPalabra = trim(fgets(STDIN));
+            //"!!!!verifico que la palabra no la haya usado el jugador
+            $partida = jugarWordix($coleccionPalabras[$numPalabra],$jugador);//juego la partida
+            $coleccionPartidas=agregarPartida($coleccionPartidas,$partida);//agrego la partida al a coleccion
+            break;
         case 1: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
+            $jugador = solicitarJugador();
+            //elegir palabra aleatoria ($numPalabra)
+            //"!!!!verifico que la palabra no la haya usado el jugador(usar misma funcion que en el anterior)
+            $partida = jugarWordix($coleccionPalabras[$numPalabra],$jugador);//juego la partida
+            $coleccionPartidas=agregarPartida($coleccionPartidas,$partida);//agrego la partida al a coleccion
 
             break;
         case 2: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
-
+            $cantPartidas=count($coleccionPartidas);
+            $min=0;
+            $numero = solicitarNumeroEntre($min,$cantPartidas);
+            datosPartida($coleccionPartidas,$numero);
             break;
         case 3: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
-
+            $jugador = solicitarJugador();
+            $cantPartidas=count($coleccionPartidas);
+            $min=0;
+            $numero = primerPartidaGanada($coleccionPartidas,$jugador);//revisar por que da -1 con los usuario(problema en funcio primerPartidaGanada)
+            datosPartida($coleccionPartidas,$numero);
             break;
-        
-            //...
-    }
-} while ($opcion != X);
-*/
+        case 4: 
+                //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3        
+            break;
+                    
+        case 5: 
+            mostrarColeccion($coleccionPartidas);
+            break;
+        case 6: 
+            //agrear palabra de 5 letras
+            $palabra=leerPalabra5Letras();
+            agregarPalabra($coleccionPalabras,$palabra);
+            break;
+        case 7:
+            echo"saliste";
+            break;
+        }
+} while ($opcion==8);
+
