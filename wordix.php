@@ -1,16 +1,13 @@
 <?php
-
 /*
 La librería JugarWordix posee la definición de constantes y funciones necesarias
 para jugar al Wordix.
 Puede ser utilizada por cualquier programador para incluir en sus programas.
 */
-
 /**************************************/
 /***** DEFINICION DE CONSTANTES *******/
 /**************************************/
 const CANT_INTENTOS = 6;
-
 /*
     disponible: letra que aún no fue utilizada para adivinar la palabra
     encontrada: letra descubierta en el lugar que corresponde
@@ -25,8 +22,6 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
-
-
 /**
  * Escrbir un texto en color ROJO
  * @param string $texto)
@@ -415,7 +410,7 @@ function cargarColeccionPalabras(){
 function cargarPartidas(){
     //array $coleccionPartidas
     //print_r
-    $coleccionPartidas[0] = ["palabraWordix" => "MUJER", "jugador" => "maría", "intentos" => 0, "puntaje" => 0];
+    $coleccionPartidas[0] = ["palabraWordix" => "MUJER", "jugador" => "maria", "intentos" => 0, "puntaje" => 0];
     $coleccionPartidas[1] = ["palabraWordix" => "QUESO", "jugador" => "pedro", "intentos" => 3, "puntaje" => 14];
     $coleccionPartidas[2] = ["palabraWordix" => "FUEGO", "jugador" => "jorge", "intentos" => 6, "puntaje" => 10];
     $coleccionPartidas[3] = ["palabraWordix" => "CASAS", "jugador" => "daniela", "intentos" => 2, "puntaje" => 13];
@@ -436,7 +431,7 @@ function cargarPartidas(){
     $coleccionPartidas[18] = ["palabraWordix" => "DATOS", "jugador" => "vanina", "intentos" => 0, "puntaje" => 0];
     $coleccionPartidas[19] = ["palabraWordix" => "MESAS", "jugador" => "trinidad", "intentos" => 3, "puntaje" => 11];
     $coleccionPartidas[20] = ["palabraWordix" => "TECLA", "jugador" => "pedro", "intentos" => 6, "puntaje" => 7];
-    $coleccionPartidas[21] = ["palabraWordix" => "PIEZA", "jugador" => "maría", "intentos" => 2, "puntaje" => 12];
+    $coleccionPartidas[21] = ["palabraWordix" => "PIEZA", "jugador" => "maria", "intentos" => 2, "puntaje" => 12];
     $coleccionPartidas[22] = ["palabraWordix" => "LAPIZ", "jugador" => "luana", "intentos" => 4, "puntaje" => 10];
     $coleccionPartidas[23] = ["palabraWordix" => "COLOR", "jugador" => "guillermo", "intentos" => 1, "puntaje" => 12];
     
@@ -449,35 +444,26 @@ function cargarPartidas(){
  * @return array
  */
 function seleccionarOpcion(){
-    //array $menuOpciones
     //int $opcion
-    print_r($menuOpciones = [
-        "1) Jugar al Wordix con una palabra elegida",
-        "2) Jugar al Wordix con una palabra aleatoria",
-        "3) Mostrar una partida",
-        "4) Mostrar la primer partida ganadora",
-        "5) Mostrar resumen de Jugador",
-        "6) Mostrar listado de partidas ordenadas por jugador y por palabra",
-        "7) Agregar una palabra de 5 letras a Wordix",
-        "8) Salir"
-    ]);
+    echo"
+    Seleccione una opcion
+        1) Jugar al Wordix con una palabra elegida 
+        2) Jugar al Wordix con una palabra aleatoria
+        3) Mostrar una partida
+        4) Mostrar la primer partida ganadora
+        5) Mostrar resumen de Jugador
+        6) Mostrar listado de partidas ordenadas por jugador y por palabra
+        7) Agregar una palabra de 5 letras a Wordix
+        8) Salir\n";
     //Cartel para la selección de opción
-    echo "Seleccionar una opción: ";
     $opcion = trim(fgets(STDIN));
 
-    if($opcion >= 1 && $opcion <= 8){
-        $opcion = $opcion - 1; //Le resto uno para que sea mas intuitivo para le usuario
-        echo "Seleccionaste ";
-        print_r($menuOpciones[$opcion]."\n");
-    }else{
+    if($opcion < 1 && $opcion > 8){
         //Si ingresa un opción no valida, vuelve a pedirla hasta que sea correcta
         while($opcion <= 0 || $opcion >= 9){
-            echo "Seleccionar una opcion: ";
+            echo "Seleccionar una opcion correcta: ";
             $opcion = trim(fgets(STDIN));
         }
-        $opcion = $opcion - 1;
-        echo "Seleccionaste ";
-        print_r($menuOpciones[$opcion]."\n");
     }
     return $opcion;
 }
@@ -500,9 +486,11 @@ function resumenJugador($estructuraPartidas, $nombreJugador){
     $intento5=0;
     $intento6=0;
     $derrotas=0;
+
     $elementos= count($estructuraPartidas);
     for($i=0;$i<$elementos;$i++){
-        if( $estructuraPartidas[$i]["nombre"]==$nombreJugador){
+        echo $estructuraPartidas[$i]["jugador"]."       ".$nombreJugador;
+        if( ($estructuraPartidas[$i]["jugador"])==$nombreJugador){
             $cantPartidas = $cantPartidas+1;
             $puntajeTotal=$puntajeTotal + $estructuraPartidas[$i]["puntaje"];
             switch($estructuraPartidas[$i]["intento"]){
@@ -664,3 +652,22 @@ function primerPartidaGanada($estructuraPartidas1,$nombre1){
 /**
  *  **COMPLETAR**
  */
+function verificarPalabra($coleccionPartidas, $palabra,$jugador){
+    $i=0;
+    $elementos=count($coleccionPartidas);
+    while($i<$elementos){
+        //uso la palabra
+        if($coleccionPartidas[$i]["jugador"] == "$jugador" && $coleccionPartidas[$i]["palabraWordix"]=="$palabra"){
+            echo "palabra ya usada";
+            $validez=FALSE;
+            $i=$elementos;
+        }else{//no la uso
+            //echo $coleccionPartidas[$i]["jugador"]."ingresada".$jugador."\n";
+            echo "palabra no usada";
+            //echo $coleccionPartidas[$i]["palabraWordix"]."ingresada".$palabra;
+            $validez=TRUE;
+            $i++;
+        }
+    }
+    return $validez; 
+}
