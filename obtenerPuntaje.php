@@ -1,4 +1,5 @@
-<?php
+<?php 
+
 /**
  * Calcula el puntaje obtenido en la partida con una palabra especifica
  * @param int $intentos
@@ -16,7 +17,7 @@ function obtenerPuntajeWordix(int $intentos, string $palabra){
 
         //strlen calcula la cantidad de caracteres de un string
         //Luego se hace el recorrido del string como un array
-        for($i = 0; $i < $palabra; $i++){
+        for($i = 0; $i < strlen($palabra); $i++){
 
             //Recorre cuales de ellas son vocales
             if ($palabra[$i] == "A" || $palabra[$i] == "E" ||
@@ -49,7 +50,7 @@ function obtenerPuntajeWordix(int $intentos, string $palabra){
 
         //strlen calcula la cantidad de caracteres de un string
         //Luego se hace el recorrido del string como un array
-        for($i = 0; $i < $palabra; $i++){
+        for($i = 0; $i < strlen($palabra); $i++){
 
             //Recorre cuales de ellas son vocales
             if ($palabra[$i] == "A" || $palabra[$i] == "E" ||
@@ -82,7 +83,7 @@ function obtenerPuntajeWordix(int $intentos, string $palabra){
 
         //strlen calcula la cantidad de caracteres de un string
         //Luego se hace el recorrido del string como un array
-        for($i = 0; $i < $palabra; $i++){
+        for($i = 0; $i < strlen($palabra); $i++){
             
             //Recorre cuales de ellas son vocales
             if ($palabra[$i] == "A" || $palabra[$i] == "E" ||
@@ -115,7 +116,7 @@ function obtenerPuntajeWordix(int $intentos, string $palabra){
         
         //strlen calcula la cantidad de caracteres de un string
         //Luego se hace el recorrido del string como un array
-        for($i = 0; $i < $palabra; $i++){
+        for($i = 0; $i < strlen($palabra); $i++){
             
             //Recorre cuales de ellas son vocales
             if ($palabra[$i] == "A" || $palabra[$i] == "E" ||
@@ -148,7 +149,7 @@ function obtenerPuntajeWordix(int $intentos, string $palabra){
         
         //strlen calcula la cantidad de caracteres de un string
         //Luego se hace el recorrido del string como un array
-        for($i = 0; $i < $palabra; $i++){
+        for($i = 0; $i < strlen($palabra); $i++){
             
             //Recorre cuales de ellas son vocales
             if ($palabra[$i] == "A" || $palabra[$i] == "E" ||
@@ -181,7 +182,7 @@ function obtenerPuntajeWordix(int $intentos, string $palabra){
         
         //strlen calcula la cantidad de caracteres de un string
         //Luego se hace el recorrido del string como un array
-        for($i = 0; $i < $palabra; $i++){
+        for($i = 0; $i < strlen($palabra); $i++){
             
             //Recorre cuales de ellas son vocales
             if ($palabra[$i] == "A" || $palabra[$i] == "E" ||
@@ -218,9 +219,10 @@ function obtenerPuntajeWordix(int $intentos, string $palabra){
     //Retorna al int $puntaje
     return $puntaje;
 }
+
 echo"ingrese intentos";
 $intentos1=trim(fgets(STDIN));
 echo "ingrese palabra";
 $palabra1=trim(fgets(STDIN));
 $puntaje1=obtenerPuntajeWordix($intentos1,$palabra1);
-echo" su puntaje es: ".$puntaje;
+echo" su puntaje es: ".$puntaje1;
