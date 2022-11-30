@@ -555,7 +555,9 @@ function jugarWordix($palabraWordix, $nombreUsuario)
 
     if ($ganoElIntento) {
         $nroIntento--;
-        $puntaje = obtenerPuntajeWordix();
+        //VER VARIABLES QUE CORRESPONDE A LA FUNCION, USE ($nroIntento,$palabraIntento) pero tira error.
+        //ver la funcion y corregirla.
+        $puntaje = obtenerPuntajeWordix($nroIntento,$palabraIntento);
         echo "Adivinó la palabra Wordix en el intento " . $nroIntento . "!: " . $palabraIntento . " Obtuvo $puntaje puntos!";
     } else {
         $nroIntento = 0; //reset intento
@@ -671,7 +673,7 @@ function seleccionarOpcion(){
     if($opcion < 1 && $opcion > 8){
         //Si ingresa un opción no valida, vuelve a pedirla hasta que sea correcta
         while($opcion <= 0 || $opcion >= 9){
-            echo "Seleccionar una opcion correcta: ";
+            echo "Seleccionar una opcion valida: ";
             $opcion = trim(fgets(STDIN));
         }
     }
@@ -748,10 +750,11 @@ function mostrarColeccion($estructuraPartidas){
     uasort($estructuraPartidas,'cmp');
     print_r($estructuraPartidas);
 }
-//consigna numero 5
+
 /** la funcion pide un numero al usuario entre un rango de valores, 
     *si el usuario ingresa un numero que no es valido, vuelve a pedirlo, retorna un numero valido
-*@param int $numero
+*@param int $min
+*@param int $max
 *@return int
 */
 function solicitarNumeroEntre($min, $max){
@@ -772,7 +775,7 @@ function solicitarNumeroEntre($min, $max){
 }
 
 
-//consigna numero 6
+
 /**Una función que, dado un número de partida, muestre en pantalla los datos de la partida
 *@param array $estructuraPartida
 *@return 
@@ -798,7 +801,7 @@ function datosPartida($estructuraPartida1,$nPartida1){
     echo"******************************************************************";
 }
 
-//consigna numero 7
+
 /** Una función agregarPalabra cuya entrada sea la colección de palabras y una palabra, y la función retorna
 *la colección modificada al agregarse la nueva palabra
 *@param array $coleccionPalabras
@@ -813,24 +816,26 @@ function agregarPalabra($coleccionPalabras,$nuevaPalabra){
     $coleccionPalabras[$j]=$nuevaPalabra;
     return $coleccionPalabras;
 }
+/** la funcion agrega los datos de una partida de wordix nueva a una coleccion de partidas wordix
+ * @param array $coleccionPartidas
+ * @param array $partidaNueva
+ * @return array
+ */
 function agregarPartida($coleccionPartidas,$partidaNueva){
+    //int $i,$j
     $i=0;
     $i=count($coleccionPartidas);
     $j=$i+1;
-    $coleccionPalabras[$j]=$partidaNueva;
+    $coleccionPartidas[$j]=$partidaNueva;
     return $coleccionPartidas;
 
 }
-//agregar al principal
-/*echo" ingrese una palabra para agregar a la coleccion";
-$nuevaPalabra=strtoupper(trim(fgets(STDIN)));*/
 
-//consigna numero 8
 /** una función que dada una colección de partidas y el nombre de un jugador, retorna el índice de la primera
 *partida ganada por dicho jugador. Si el jugador ganó ninguna partida, la función debe retornar el valor -1.
 *@param array $estructuraPartidas
 *@param string $nombre1
-*return Int
+*@return Int
 */
 function primerPartidaGanada($estructuraPartidas1,$nombre1){
     //int $j,$i,$indice
@@ -849,7 +854,12 @@ function primerPartidaGanada($estructuraPartidas1,$nombre1){
     return $indice;
     }
 /**
- *  **COMPLETAR**
+ *  ingresa una palabra y un jugador a la coleccion de partidas y la funcion se encarga de verificar que 
+ * no se vuelva a repetir la misma palabra para el mismo jugador**
+ * @param array $coleccion Partidas
+ * @param string $palabra
+ * @param string $jugador
+ * @return Boolean
  */
 function verificarPalabra($coleccionPartidas, $palabra,$jugador,){
     $i=0;

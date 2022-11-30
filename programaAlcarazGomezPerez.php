@@ -6,14 +6,20 @@ include_once("wordix.php");
 /**************************************/
 
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
-/* ... COMPLETAR ... */
+/*  
+- **Julian Jorge Alcaraz** - Legajo: FAI-4261 - TUDW-mail: julianalcaraz4@gmail.com - GitHub: Julian-Alcaraz 
+- **Gomez Zuñiga Gonzalo** - Legajo: FAI-4381 -TUDW- mail: gzg95-@hotmail.es -GitHub: GonzaGomez9522
+- **Catalina Perez Moriena** - Legajo: FAI-3126 -TUDW- mail: morienacata@gmail.com -GitHub: catamoriena
+*/
 
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
 
-//Declaración de variables:
+//STRING $usuario,$jugador,$palabra,INT $opcion,$numPalabra,$cantPartidas,$min,$numero
+//,BOOLEAN $estadoPalabra,ARRAY $coleccionPartidas,$coleccionPartidas,$datosResumen
+//FLOAR $porcentaje
 
 
 //Inicialización de variables:
@@ -27,7 +33,7 @@ do {
     $opcion=seleccionarOpcion();
     switch ($opcion) {
         case 1: 
-            //jugar wordix con nuna partida elegida
+            //jugar wordix con una partida elegida
             $jugador = solicitarJugador();
             echo "Seleccione una de las siguientes palabras segun el numero";
             print_r($coleccionPalabras);
