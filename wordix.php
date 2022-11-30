@@ -307,8 +307,9 @@ function esIntentoGanado($estructuraPalabraIntento)
  * Calcula el puntaje obtenido en la partida con una palabra especifica
  * @param int $intentos
  * @param string $palabra
+ * @return int
  */
-function obtenerPuntajeWordix(int $intentos, string $palabra){
+function obtenerPuntajeWordix($intentos, $palabra){
     //int $puntaje, $i
     //array $palabra[]
 
@@ -555,8 +556,6 @@ function jugarWordix($palabraWordix, $nombreUsuario)
 
     if ($ganoElIntento) {
         $nroIntento--;
-        //VER VARIABLES QUE CORRESPONDE A LA FUNCION, USE ($nroIntento,$palabraIntento) pero tira error.
-        //ver la funcion y corregirla.
         $puntaje = obtenerPuntajeWordix($nroIntento,$palabraIntento);
         echo "Adivinó la palabra Wordix en el intento " . $nroIntento . "!: " . $palabraIntento . " Obtuvo $puntaje puntos!";
     } else {
@@ -793,43 +792,27 @@ function datosPartida($estructuraPartida1,$nPartida1){
         $msj="Adivino la palabra en ".$intentos1." intentos";
     }
     /*$estructuraPartida1=[$palabra1,$nombre1,$puntaje1,$intentos1];*/
-    echo"******************************************************************";
+    echo"******************************************************************\n";
     echo"Partida WORDIX ".$nPartida1." : palabra ".$palabra1."\n";
     echo"Jugador: ".$nombre1."\n";
     echo"Puntaje: ".$puntaje1." puntos\n";
     echo"Intentos: ".$msj."\n";
     echo"******************************************************************";
 }
-
-
-/** Una función agregarPalabra cuya entrada sea la colección de palabras y una palabra, y la función retorna
-*la colección modificada al agregarse la nueva palabra
-*@param array $coleccionPalabras
-*@param string $nuevaPalabra
-*return array
-*/
-function agregarPalabra($coleccionPalabras,$nuevaPalabra){
-    //array $nuevaColeccion
-    $i=0;
-    $i=count($coleccionPalabras);
-    $j=$i+1;
-    $coleccionPalabras[$j]=$nuevaPalabra;
-    return $coleccionPalabras;
-}
 /** la funcion agrega los datos de una partida de wordix nueva a una coleccion de partidas wordix
- * @param array $coleccionPartidas
- * @param array $partidaNueva
+ * @param array $coleccion
+ * @param string $elemento o @param array $elemento
  * @return array
  */
-function agregarPartida($coleccionPartidas,$partidaNueva){
-    //int $i,$j
-    $i=0;
-    $i=count($coleccionPartidas);
-    $j=$i+1;
-    $coleccionPartidas[$j]=$partidaNueva;
-    return $coleccionPartidas;
-
+function agregarElemento($coleccion,$elemento){
+    //int $i
+    $i=count($coleccion);
+    $i=$i+1;
+    $coleccion[$i]=$elemento;
+    return $coleccion;
 }
+
+
 
 /** una función que dada una colección de partidas y el nombre de un jugador, retorna el índice de la primera
 *partida ganada por dicho jugador. Si el jugador ganó ninguna partida, la función debe retornar el valor -1.

@@ -19,7 +19,7 @@ include_once("wordix.php");
 
 //STRING $usuario,$jugador,$palabra,INT $opcion,$numPalabra,$cantPartidas,$min,$numero
 //,BOOLEAN $estadoPalabra,ARRAY $coleccionPartidas,$coleccionPartidas,$datosResumen
-//FLOAR $porcentaje
+//FLOAT $porcentaje
 
 
 //Inicialización de variables:
@@ -28,7 +28,7 @@ $coleccionPartidas=cargarPartidas();
 
 echo"Ingrese un usuario \n";
 $usuario=trim(fgets(STDIN));
-escribirMensajeBienvenida($usuario);
+//escribirMensajeBienvenida($usuario);
 do {
     $opcion=seleccionarOpcion();
     switch ($opcion) {
@@ -47,7 +47,7 @@ do {
             }
             }while(!$estadoPalabra);
             $partida = jugarWordix($coleccionPalabras[$numPalabra],$jugador);//juego la partida
-            $coleccionPartidas=agregarPartida($coleccionPartidas,$partida);//agrego la partida al a coleccion
+            $coleccionPartidas=agregarElemento($coleccionPartidas,$partida);//agrego la partida al a coleccion
             break;
         case 2: 
             $jugador = solicitarJugador();
@@ -62,7 +62,7 @@ do {
                 }
             }while(!$estadoPalabra);
             $partida = jugarWordix($coleccionPalabras[$numPalabra],$jugador);//juego la partida
-            $coleccionPartidas=agregarPartida($coleccionPartidas,$partida);//agrego la partida al a coleccion
+            $coleccionPartidas=agregarElemento($coleccionPartidas,$partida);//agrego la partida al a coleccion
             break;
         case 3: 
             //muestra los datos de una partida elejida por el usuario
@@ -113,7 +113,7 @@ do {
         case 7: 
             //agrear palabra de 5 letras
             $palabra=leerPalabra5Letras();
-            agregarPalabra($coleccionPalabras,$palabra);
+            $coleccionPalabras=agregarElemento($coleccionPalabras,$palabra);
             break;
         case 8:
             //sale del juego
