@@ -108,8 +108,7 @@ function escribirMensajeBienvenida($usuario)
 /** verifica que el string ingresado sea una palabra
  * @param string $cadena
  */
-function esPalabra($cadena)
-{
+function esPalabra($cadena){
     //int $cantCaracteres, $i, boolean $esLetra
     $cantCaracteres = strlen($cadena);
     $esLetra = true;
@@ -143,7 +142,7 @@ function leerPalabra5Letras()
 
 
 /**
- * Inicia una estructura de datos Teclado. La estructura es de tipo: ¿Indexado, asociativo o Multidimensional?
+ * Inicia una estructura de datos Teclado. La estructura es de tipo:  asociativo
  *@return array
  */
 function iniciarTeclado()
@@ -307,219 +306,57 @@ function esIntentoGanado($estructuraPalabraIntento)
  * Calcula el puntaje obtenido en la partida con una palabra especifica
  * @param int $intentos
  * @param string $palabra
- * @return int
+ * @return int retorna el puntaje
  */
 function obtenerPuntajeWordix($intentos, $palabra){
     //int $puntaje, $i
     //array $palabra[]
-
     //Se incializa el puntaje con 0
     $puntaje = 0;
-
-    //Empiezan las alternativa dados la cantidad de intentos
-    if($intentos == 6){ //Primera alternativa si se hizo en 6 intentos
-
-        //strlen calcula la cantidad de caracteres de un string
-        //Luego se hace el recorrido del string como un array
-        for($i = 0; $i < strlen($palabra); $i++){
-
-            //Recorre cuales de ellas son vocales
-            if ($palabra[$i] == "A" || $palabra[$i] == "E" ||
-            $palabra[$i] == "I" || $palabra[$i] == "O" ||
-            $palabra[$i] == "U" ){
-                $puntaje = $puntaje + 1;//Las vocales suman 1 punto cada una
-
-            //Recorre cuales son consonates anterirores a "M"(inclusive)
-            }elseif ($palabra[$i] == "B" || $palabra[$i] == "C" ||
-            $palabra[$i] == "D" || $palabra[$i] == "F" ||
-            $palabra[$i] == "G" || $palabra[$i] == "H" ||
-            $palabra[$i] == "J" || $palabra[$i] == "K" ||
-            $palabra[$i] == "L" || $palabra[$i] == "M"){
-                $puntaje = $puntaje + 1;//Las consonates anteriores a "M"(inclusive) suman 1 punto cada una
-
-            //Recorre cuales son consonantes posteriores a "M"
-            }elseif ($palabra[$i] == "N" || $palabra[$i] == "P" ||
-            $palabra[$i] == "Q" || $palabra[$i] == "R" ||
-            $palabra[$i] == "S" || $palabra[$i] == "T" ||
-            $palabra[$i] == "V" || $palabra[$i] == "W" ||
-            $palabra[$i] == "X" || $palabra[$i] == "Y" ||
-            $palabra[$i] == "Z"){
-                $puntaje = $puntaje + 2;//Las consonantes posteriores a "M" suman 2 puntos cada una
-            }
-        }
-        //Si se resulve en 6 intentos suma 1 punto
-        $puntaje = $puntaje + 1;
-
-    }elseif($intentos == 5){ //Segunda alternativa si se hizo en 5 intentos
-
-        //strlen calcula la cantidad de caracteres de un string
-        //Luego se hace el recorrido del string como un array
-        for($i = 0; $i < strlen($palabra); $i++){
-
-            //Recorre cuales de ellas son vocales
-            if ($palabra[$i] == "A" || $palabra[$i] == "E" ||
-            $palabra[$i] == "I" || $palabra[$i] == "O" ||
-            $palabra[$i] == "U" ){
-                $puntaje = $puntaje + 1;//Las vocales suman 1 punto cada una
-            
-            //Recorre cuales son consonates anterirores a "M"(inclusive)
-            }elseif ($palabra[$i] == "B" || $palabra[$i] == "C" ||
-            $palabra[$i] == "D" || $palabra[$i] == "F" ||
-            $palabra[$i] == "G" || $palabra[$i] == "H" ||
-            $palabra[$i] == "J" || $palabra[$i] == "K" ||
-            $palabra[$i] == "L" || $palabra[$i] == "M"){
-                $puntaje = $puntaje + 1;//Las consonates anteriores a "M"(inclusive) suman 1 punto cada una
-            
-            //Recorre cuales son consonantes posteriores a "M"
-            }elseif ($palabra[$i] == "N" || $palabra[$i] == "P" ||
-            $palabra[$i] == "Q" || $palabra[$i] == "R" ||
-            $palabra[$i] == "S" || $palabra[$i] == "T" ||
-            $palabra[$i] == "V" || $palabra[$i] == "W" ||
-            $palabra[$i] == "X" || $palabra[$i] == "Y" ||
-            $palabra[$i] == "Z"){
-                $puntaje = $puntaje + 2;//Las consonantes posteriores a "M" suman 2 puntos cada una
-            }
-        }
-        //Si se resulve en 5 intentos suma 2 puntos
-        $puntaje = $puntaje + 2;
-
-    }elseif($intentos == 4){ //Tercera alternativa si se hizo en 4 intentos
-
-        //strlen calcula la cantidad de caracteres de un string
-        //Luego se hace el recorrido del string como un array
-        for($i = 0; $i < strlen($palabra); $i++){
-            
-            //Recorre cuales de ellas son vocales
-            if ($palabra[$i] == "A" || $palabra[$i] == "E" ||
-            $palabra[$i] == "I" || $palabra[$i] == "O" ||
-            $palabra[$i] == "U" ){
-                $puntaje = $puntaje + 1;//Las vocales suman 1 punto cada una
-            
-            //Recorre cuales son consonates anterirores a "M"(inclusive)
-            }elseif ($palabra[$i] == "B" || $palabra[$i] == "C" ||
-            $palabra[$i] == "D" || $palabra[$i] == "F" ||
-            $palabra[$i] == "G" || $palabra[$i] == "H" ||
-            $palabra[$i] == "J" || $palabra[$i] == "K" ||
-            $palabra[$i] == "L" || $palabra[$i] == "M"){
-                $puntaje = $puntaje + 1;//Las consonates anteriores a "M"(inclusive) suman 1 punto cada una
-            
-            //Recorre cuales son consonantes posteriores a "M"
-            }elseif ($palabra[$i] == "N" || $palabra[$i] == "P" ||
-            $palabra[$i] == "Q" || $palabra[$i] == "R" ||
-            $palabra[$i] == "S" || $palabra[$i] == "T" ||
-            $palabra[$i] == "V" || $palabra[$i] == "W" ||
-            $palabra[$i] == "X" || $palabra[$i] == "Y" ||
-            $palabra[$i] == "Z"){
-                $puntaje = $puntaje + 2;//Las consonantes posteriores a "M" suman 2 puntos cada una
-            }
-        }
-        //Si se resulve en 4 intentos suma 3 puntos
-        $puntaje = $puntaje + 3;
-
-    }elseif($intentos == 3){ //Cuarta alternativa si se hizo en 3 intentos
-        
-        //strlen calcula la cantidad de caracteres de un string
-        //Luego se hace el recorrido del string como un array
-        for($i = 0; $i < strlen($palabra); $i++){
-            
-            //Recorre cuales de ellas son vocales
-            if ($palabra[$i] == "A" || $palabra[$i] == "E" ||
-            $palabra[$i] == "I" || $palabra[$i] == "O" ||
-            $palabra[$i] == "U" ){
-                $puntaje = $puntaje + 1;//Las vocales suman 1 punto cada una
-        
-            //Recorre cuales son consonates anterirores a "M"(inclusive)
-            }elseif ($palabra[$i] == "B" || $palabra[$i] == "C" ||
-            $palabra[$i] == "D" || $palabra[$i] == "F" ||
-            $palabra[$i] == "G" || $palabra[$i] == "H" ||
-            $palabra[$i] == "J" || $palabra[$i] == "K" ||
-            $palabra[$i] == "L" || $palabra[$i] == "M"){
-                $puntaje = $puntaje + 1;//Las consonates anteriores a "M"(inclusive) suman 1 punto cada una
-            
-            //Recorre cuales son consonantes posteriores a "M"
-            }elseif ($palabra[$i] == "N" || $palabra[$i] == "P" ||
-            $palabra[$i] == "Q" || $palabra[$i] == "R" ||
-            $palabra[$i] == "S" || $palabra[$i] == "T" ||
-            $palabra[$i] == "V" || $palabra[$i] == "W" ||
-            $palabra[$i] == "X" || $palabra[$i] == "Y" ||
-            $palabra[$i] == "Z"){
-                $puntaje = $puntaje + 2;//Las consonantes posteriores a "M" suman 2 puntos cada una
-            }
-        }
-        //Si se resulve en 3 intentos suma 4 puntos
-        $puntaje = $puntaje + 4;
-
-    }elseif($intentos == 2){ //Quinta alternativa si se hizo en 2 intentos
-        
-        //strlen calcula la cantidad de caracteres de un string
-        //Luego se hace el recorrido del string como un array
-        for($i = 0; $i < strlen($palabra); $i++){
-            
-            //Recorre cuales de ellas son vocales
-            if ($palabra[$i] == "A" || $palabra[$i] == "E" ||
-            $palabra[$i] == "I" || $palabra[$i] == "O" ||
-            $palabra[$i] == "U" ){
-                $puntaje = $puntaje + 1;//Las vocales suman 1 punto cada una
-            
-            //Recorre cuales son consonates anterirores a "M"(inclusive)
-            }elseif ($palabra[$i] == "B" || $palabra[$i] == "C" ||
-            $palabra[$i] == "D" || $palabra[$i] == "F" ||
-            $palabra[$i] == "G" || $palabra[$i] == "H" ||
-            $palabra[$i] == "J" || $palabra[$i] == "K" ||
-            $palabra[$i] == "L" || $palabra[$i] == "M"){
-                $puntaje = $puntaje + 1;//Las consonates anteriores a "M"(inclusive) suman 1 punto cada una
-            
-            //Recorre cuales son consonantes posteriores a "M"
-            }elseif ($palabra[$i] == "N" || $palabra[$i] == "P" ||
-            $palabra[$i] == "Q" || $palabra[$i] == "R" ||
-            $palabra[$i] == "S" || $palabra[$i] == "T" ||
-            $palabra[$i] == "V" || $palabra[$i] == "W" ||
-            $palabra[$i] == "X" || $palabra[$i] == "Y" ||
-            $palabra[$i] == "Z"){
-                $puntaje = $puntaje + 2;//Las consonantes posteriores a "M" suman 2 puntos cada una
-            }
-        }
-        //Si se resulve en 2 intentos suma 5 puntos
-        $puntaje = $puntaje + 5;
-
-    }elseif($intentos == 1){ //Sexta alternativa si se hizo en 1 intento
-        
-        //strlen calcula la cantidad de caracteres de un string
-        //Luego se hace el recorrido del string como un array
-        for($i = 0; $i < strlen($palabra); $i++){
-            
-            //Recorre cuales de ellas son vocales
-            if ($palabra[$i] == "A" || $palabra[$i] == "E" ||
-            $palabra[$i] == "I" || $palabra[$i] == "O" ||
-            $palabra[$i] == "U" ){
-                $puntaje = $puntaje + 1;//Las vocales suman 1 punto cada una
-            
-            //Recorre cuales son consonates anterirores a "M"(inclusive)
-            }elseif ($palabra[$i] == "B" || $palabra[$i] == "C" ||
-            $palabra[$i] == "D" || $palabra[$i] == "F" ||
-            $palabra[$i] == "G" || $palabra[$i] == "H" ||
-            $palabra[$i] == "J" || $palabra[$i] == "K" ||
-            $palabra[$i] == "L" || $palabra[$i] == "M"){
-                $puntaje = $puntaje + 1;//Las consonates anteriores a "M"(inclusive) suman 1 punto cada una
-            
-            //Recorre cuales son consonantes posteriores a "M"
-            }elseif ($palabra[$i] == "N" || $palabra[$i] == "P" ||
-            $palabra[$i] == "Q" || $palabra[$i] == "R" ||
-            $palabra[$i] == "S" || $palabra[$i] == "T" ||
-            $palabra[$i] == "V" || $palabra[$i] == "W" ||
-            $palabra[$i] == "X" || $palabra[$i] == "Y" ||
-            $palabra[$i] == "Z"){
-                $puntaje = $puntaje + 2;//Las consonantes posteriores a "M" suman 2 puntos cada una
-            }
-        }
-        //Si se resulve en 2 intentos suma 6 puntos
-        $puntaje = $puntaje + 6;
-
-    }else{ //Séptima alternativa si no resolvió la palabra
-        //Suma 0 puntos
-        $puntaje = 0;
+    switch($intentos){//Empiezan las alternativa dados la cantidad de intentos
+        case 1:
+            $puntaje=$puntaje +6;
+            break;
+        case 2:
+            $puntaje=$puntaje +5;
+            break;
+        case 3:
+            $puntaje=$puntaje +4;
+            break;
+        case 4:
+            $puntaje=$puntaje +3;
+            break;
+        case 5:
+            $puntaje=$puntaje +2;
+            break;
+        case 6:
+            $puntaje=$puntaje +1;
+            break;
     }
-    
+    //Puntos dado el valor por letra
+    for($i = 0; $i < strlen($palabra); $i++){ 
+        //Recorre cuales de ellas son vocales
+        if ($palabra[$i] == "A" || $palabra[$i] == "E" ||
+        $palabra[$i] == "I" || $palabra[$i] == "O" ||
+        $palabra[$i] == "U" ){
+            $puntaje = $puntaje + 1;//Las vocales suman 1 punto cada una  
+        //Recorre cuales son consonates anterirores a "M"(inclusive)
+        }elseif ($palabra[$i] == "B" || $palabra[$i] == "C" ||
+        $palabra[$i] == "D" || $palabra[$i] == "F" ||
+        $palabra[$i] == "G" || $palabra[$i] == "H" ||
+        $palabra[$i] == "J" || $palabra[$i] == "K" ||
+        $palabra[$i] == "L" || $palabra[$i] == "M"){
+            $puntaje = $puntaje + 2;//Las consonates anteriores a "M"(inclusive) suman 2 punto cada una
+        //Recorre cuales son consonantes posteriores a "M"
+        }elseif ($palabra[$i] == "N" || $palabra[$i] == "P" ||
+        $palabra[$i] == "Q" || $palabra[$i] == "R" ||
+        $palabra[$i] == "S" || $palabra[$i] == "T" ||
+        $palabra[$i] == "V" || $palabra[$i] == "W" ||
+        $palabra[$i] == "X" || $palabra[$i] == "Y" ||
+        $palabra[$i] == "Z"){
+            $puntaje = $puntaje + 3;//Las consonantes posteriores a "M" suman 3 puntos cada una
+        }
+    }
     //Retorna al int $puntaje
     return $puntaje;
 }
@@ -538,7 +375,6 @@ function jugarWordix($palabraWordix, $nombreUsuario)
     escribirMensajeBienvenida($nombreUsuario);
     $nroIntento = 1;
     do {
-
         echo "Comenzar con el Intento " . $nroIntento . ":\n";
         $palabraIntento = leerPalabra5Letras();
         $indiceIntento = $nroIntento - 1;
@@ -552,7 +388,6 @@ function jugarWordix($palabraWordix, $nombreUsuario)
         $ganoElIntento = esIntentoGanado($arregloDeIntentosWordix[$indiceIntento]);
         $nroIntento++;
     } while ($nroIntento <= CANT_INTENTOS && !$ganoElIntento);
-
 
     if ($ganoElIntento) {
         $nroIntento--;
@@ -575,6 +410,7 @@ function jugarWordix($palabraWordix, $nombreUsuario)
 }
 /**Funcion solicita nombre de jugador, verifica que sean todas letras y le devuelve en minusculas
  * no tiene parametros
+ * @return string 
  */
 function solicitarJugador(){
     /** string $nombre
@@ -587,7 +423,7 @@ function solicitarJugador(){
         $nombreBienIngresado=true;
     }else{
         $nombreBienIngresado=false;
-        echo"el nombre ingresado no es valido";
+        echo"el nombre ingresado no es valido\n";
         echo "Ingrese otro porfavor";
         $nombre = trim(fgets(STDIN));
     }
@@ -597,11 +433,10 @@ return strtolower($nombre);
 
 /**
  * Obtiene una colección de palabras
- * @return array
+ * @return array coleccion palabras
  */
 function cargarColeccionPalabras(){
     //array $cargarColeccionPalabras
-    //print_r
     $coleccionPalabras = [
         "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
         "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
@@ -609,7 +444,6 @@ function cargarColeccionPalabras(){
         "NEGRO", "PERRO", "AMIGO", "DATOS", "MESAS",
         "TECLA", "PIEZA", "LAPIZ", "COLOR"
     ];
-
     return ($coleccionPalabras);
 }
 
@@ -620,7 +454,6 @@ function cargarColeccionPalabras(){
  */
 function cargarPartidas(){
     //array $coleccionPartidas
-    //print_r
     $coleccionPartidas[0] = ["palabraWordix" => "MUJER", "jugador" => "maria", "intentos" => 0, "puntaje" => 0];
     $coleccionPartidas[1] = ["palabraWordix" => "QUESO", "jugador" => "pedro", "intentos" => 3, "puntaje" => 14];
     $coleccionPartidas[2] = ["palabraWordix" => "FUEGO", "jugador" => "jorge", "intentos" => 6, "puntaje" => 10];
@@ -652,7 +485,7 @@ function cargarPartidas(){
 /**
  * Pide que se seleccione una de las opciones
  * De ser una opción fuera de la lista, se vuelve a pedir hasta que ingrese una correcta
- * @return array
+ * @return int numero de opcion
  */
 function seleccionarOpcion(){
     //int $opcion
@@ -688,8 +521,10 @@ function resumenJugador($estructuraPartidas, $nombreJugador){
     /** int $cantPartidas,$puntajeTotal,$intento1,$intento2,$intento3,$intento,$intento5,$intento6,$derrotas,$elementos,$victorias
      * array $resumen
      */
-    $cantPartidas=0;
+    //acumulador
     $puntajeTotal=0;
+    //inico contadores
+    $cantPartidas=0;
     $intento1=0;
     $intento2=0;
     $intento3=0;
@@ -698,9 +533,8 @@ function resumenJugador($estructuraPartidas, $nombreJugador){
     $intento6=0;
     $derrotas=0;
 
-    $elementos= count($estructuraPartidas);
+    $elementos= count($estructuraPartidas);//cuento la cantidad de elementos del arreglo
     for($i=0;$i<$elementos;$i++){
-        //echo $estructuraPartidas[$i]["jugador"]."       ".$nombreJugador;
         if( ($estructuraPartidas[$i]["jugador"])==$nombreJugador){
             $cantPartidas = $cantPartidas+1;
             $puntajeTotal=$puntajeTotal + $estructuraPartidas[$i]["puntaje"];
@@ -721,7 +555,7 @@ function resumenJugador($estructuraPartidas, $nombreJugador){
                 "intento2"=>$intento2,"intento3"=>$intento3,"intento4"=>$intento4,"intento5"=>$intento5,"intento6"=>$intento6, ];
     return $resumen;
 }
-/**funcion de comparacion para uasort
+/**funcion de comparacion para uasort ordena por nombre y por palabra
  * @param array $partida1, $partida2
  * @return int 
  */
@@ -776,11 +610,11 @@ function solicitarNumeroEntre($min, $max){
 
 
 /**Una función que, dado un número de partida, muestre en pantalla los datos de la partida
-*@param array $estructuraPartida
-*@return 
+* @param array $estructuraPartida
 */
 function datosPartida($estructuraPartida1,$nPartida1){ 
-    /*Int $nPartida, String $msj*/
+    /*Int $nPartida, $puntaje1,$intentos1
+     String $msj, $palabra1*/
     $msj="";
     $palabra1=$estructuraPartida1[$nPartida1]["palabraWordix"];
     $nombre1=$estructuraPartida1[$nPartida1]["jugador"];
@@ -791,7 +625,6 @@ function datosPartida($estructuraPartida1,$nPartida1){
     }else{
         $msj="Adivino la palabra en ".$intentos1." intentos";
     }
-    /*$estructuraPartida1=[$palabra1,$nombre1,$puntaje1,$intentos1];*/
     echo"******************************************************************\n";
     echo"Partida WORDIX ".$nPartida1." : palabra ".$palabra1."\n";
     echo"Jugador: ".$nombre1."\n";
@@ -799,23 +632,28 @@ function datosPartida($estructuraPartida1,$nPartida1){
     echo"Intentos: ".$msj."\n";
     echo"******************************************************************";
 }
-/** la funcion agrega los datos de una partida de wordix nueva a una coleccion de partidas wordix
+/** la funcion agrega la palabra a la coleccion de palabras
  * @param array $coleccion
- * @param string $elemento o @param array $elemento
+ * @param string $palabra 
  * @return array
  */
-function agregarElemento($coleccion,$elemento){
-    //int $i
-    $i=count($coleccion);
-    $i=$i+1;
-    $coleccion[$i]=$elemento;
+function agregarPalabra($coleccion,$palabra){
+    //int $i, $j
+    $j=count($coleccion);
+    for($i=0;$i<$j;$i++){
+        if($coleccion[$i]==$palabra){
+            echo "Palabra ya ingresada, porfavor ingrese otra palabra";
+            $palabra=leerPalabra5Letras();
+            $i=-1;
+        }
+    }
+    array_push($coleccion, $palabra);
+    echo"Su palabra fue agregada con exito\n";
     return $coleccion;
 }
 
-
-
 /** una función que dada una colección de partidas y el nombre de un jugador, retorna el índice de la primera
-*partida ganada por dicho jugador. Si el jugador ganó ninguna partida, la función debe retornar el valor -1.
+*partida ganada por dicho jugador. Si el jugador no ganó ninguna partida, la función debe retornar el valor -1.
 *@param array $estructuraPartidas
 *@param string $nombre1
 *@return Int
@@ -836,10 +674,9 @@ function primerPartidaGanada($estructuraPartidas1,$nombre1){
     }    
     return $indice;
     }
-/**
- *  ingresa una palabra y un jugador a la coleccion de partidas y la funcion se encarga de verificar que 
+/**ingresa una palabra y un jugador a la coleccion de partidas y la funcion se encarga de verificar que 
  * no se vuelva a repetir la misma palabra para el mismo jugador**
- * @param array $coleccion Partidas
+ * @param array $coleccionPartidas
  * @param string $palabra
  * @param string $jugador
  * @return Boolean
@@ -852,13 +689,38 @@ function verificarPalabra($coleccionPartidas, $palabra,$jugador,){
             echo "Palabra ya usada ";
             $validez=FALSE;
             $i=$elementos;
-        }else{//no la uso
-            //echo $coleccionPartidas[$i]["jugador"]."ingresada".$jugador."\n";
-            //echo "palabra no usada";
-            //echo $coleccionPartidas[$i]["palabraWordix"]."ingresada".$palabra;
+        }else{
             $validez=TRUE;
             $i++;
         }
     }
     return $validez; 
+
 } 
+/**muestra el resumen de un jugador
+ * @param array $datosResumen 
+ */
+function mostrarResumen($datosResumen){
+    //float $porcentaje
+    echo"************************************************\n";
+            if($datosResumen["partidas"]!=0){
+            $porcentaje=$datosResumen["victorias"]*100/$datosResumen["partidas"];
+            echo"Jugador: ".$datosResumen["nombre"]."\n";
+            echo"Partidas: ".$datosResumen["partidas"]."\n";
+            echo"Puntaje Total: ".$datosResumen["puntaje"]."\n";
+            echo"Victorias: ".$datosResumen["victorias"]." ";
+            echo"Porcentaje Victorias: ".$porcentaje."%\n";
+            echo"Adivinidas: \n";
+            echo"   Intento 1: ".$datosResumen["intento1"]."\n";
+            echo"   Intento 2: ".$datosResumen["intento2"]."\n";
+            echo"   Intento 3: ".$datosResumen["intento3"]."\n";
+            echo"   Intento 4: ".$datosResumen["intento4"]."\n";
+            echo"   Intento 5: ".$datosResumen["intento5"]."\n";
+            echo"   Intento 6: ".$datosResumen["intento6"]."\n";
+            echo"************************************************\n";
+        }else{
+            echo"************************************************\n";
+            echo "el Jugador no tiene partidas \n";
+            echo"************************************************\n";
+        }
+}
