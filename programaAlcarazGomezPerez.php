@@ -65,12 +65,14 @@ do {
             $coleccionPartidas=agregarPartida($coleccionPartidas,$partida);//agrego la partida al a coleccion
             break;
         case 3: 
+            //muestra los datos de una partida elejida por el usuario
             $cantPartidas=count($coleccionPartidas);
             $min=0;
             $numero = solicitarNumeroEntre($min,$cantPartidas);
             datosPartida($coleccionPartidas,$numero);
             break;
         case 4: 
+            //muestra la primer partida ganadora
             $jugador = solicitarJugador();
             $cantPartidas=count($coleccionPartidas);
             $min=0;
@@ -78,7 +80,7 @@ do {
             datosPartida($coleccionPartidas,$numero);
             break;
         case 5: 
-            //mostrar estadisticas del jugador
+            //mostrar estadisticas de un jugador
             $jugador = solicitarJugador();
             $datosResumen=resumenJugador($coleccionPartidas, $jugador);
             echo"************************************************\n";
@@ -105,6 +107,7 @@ do {
             break;
                     
         case 6: 
+            //Mostrar listado de partidas ordenadas por jugador y por palabra
             mostrarColeccion($coleccionPartidas);
             break;
         case 7: 
@@ -113,6 +116,7 @@ do {
             agregarPalabra($coleccionPalabras,$palabra);
             break;
         case 8:
+            //sale del juego
             echo"JUEGO FINALIZADO";
             break;
         }
