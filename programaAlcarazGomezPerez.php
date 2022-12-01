@@ -65,7 +65,7 @@ do {
             $coleccionPartidas [$elementos] = $partida;
             break;
         case 3: //muestra los datos de una partida elejida por el usuario
-            $cantPartidas=count($coleccionPartidas);
+            $cantPartidas=count($coleccionPartidas)-1;
             $min=0;
             $numero = solicitarNumeroEntre($min,$cantPartidas);
             datosPartida($coleccionPartidas,$numero);
@@ -75,7 +75,14 @@ do {
             $cantPartidas=count($coleccionPartidas);
             $min=0;
             $numero = primerPartidaGanada($coleccionPartidas,$jugador);
-            datosPartida($coleccionPartidas,$numero);
+            if($numero==1){
+                datosPartida($coleccionPartidas,$numero);
+
+            }elseif($numero==-1){
+                echo "El usuario no gano ninguna partida";
+            }elseif($numero==-2){
+                echo "El usuario ingresado no jugo ninguna partida";
+            }
             break;
         case 5: //mostrar estadisticas de un jugador
             $jugador = solicitarJugador();
